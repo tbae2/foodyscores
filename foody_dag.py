@@ -1,14 +1,18 @@
 #! python3
 
 from airflow import DAG
-from airflow.operators import python_operator
+from airflow.operators.python_operator import PythonOperator
 import datetime as dt
-
+import sys
+# you need this so airflow can properly import modules, look for permanent way to do this. 
+sys.path.append('/home/thomas/airflow/dags/foodyscores/')
+# import from asks gahealth
+from tasks.gahealth import grabHealthScores
 
 default_args = {
     'owner': 'tbae2',
     'depends_on_past': False,
-    'start_date': dt.datetime
+    'start_date': dt.datetime.today()
 }
 
 
@@ -18,3 +22,10 @@ dag = DAG(
     default_args=default_args
 )
 
+
+
+extractGaHealth = PythonOperator(
+    task_id = 'extract_ga_health_scores',
+    python_callable=grabHealthScores,
+    dag=dag
+)
