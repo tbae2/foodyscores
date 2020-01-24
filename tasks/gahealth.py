@@ -35,19 +35,22 @@ def grabHealthScores():
     # while True:
     # while pageCount < maxPageCount:
     # loop through requests for given city url until the response is blank meaning no more data to return
-    while noMoreData == False:
-        try:    
-            healthReq = requests.get("%s%s" % (base_url,pageCount))
-            if len(healthReq.json()) > 0:
-                healthScoreHolder += healthReq.json()
-                pageCount += 1
-                print(str(pageCount))
-            else:
-                noMoreData = True
-        except Exception as e:
-            print(healthReq.text)
-            print(healthReq.status_code)
-            raise e
+    for city in cityIds:
+
+        while noMoreData == False:
+            try:    
+                # healthReq = requests.get("%s%s%s%s" % (base_url,cityIds[city],url_end,pageCount))
+                healthReq = requests.get(f"{base_url}{cityIds[city]}{url_end}{pageCount}")
+                if len(healthReq.json()) > 0:
+                    healthScoreHolder += healthReq.json()
+                    pageCount += 1
+                    print(str(pageCount))
+                else:
+                    noMoreData = True
+            except Exception as e:
+                print(healthReq.text)
+                print(healthReq.status_code)
+                raise e
         
         
     # print(str(healthReq.status_code))
