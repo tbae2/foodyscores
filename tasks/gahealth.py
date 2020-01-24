@@ -18,10 +18,13 @@ import os
 def grabHealthScores():
     print('grabbing url')
     # ga department of health api that stores all the health reports for food establishments 
-    base_url = 'https://ga.healthinspections.us/stateofgeorgia/API/index.cfm/search/%7B%22city%22:%22TUFSSUVUVEE=%22,%22keyword%22:%22%22%7D/'
+    base_url = "https://ga.healthinspections.us/stateofgeorgia/API/index.cfm/search/%7B%22city%22:%22"
+    url_end = "%22,%22keyword%22:%22%22%7D/"
     print(base_url)
     pageCount = 0
     currentDate = datetime.date.today()
+    ## current location to pull json list of city ids to use in url parsing
+    cityIds = json.load(open("../dataconfig/cityids.json","r"))
     # maxPageCount = 3
     healthScoreHolder = []
     noMoreData = False
