@@ -14,17 +14,6 @@ import os
 ## mulltiple ways to check idempotency by run. use Id that is returned by health dept api to check for changes
 ## not the primary key, foreign key. 
 
-class restaurant():
-    def __init__(self):
-        self.name = restaurantName
-        self.gaHealthScore = healthScore
-        self.yelpScore = 0
-    pass
-
-class yelpInfo():
-    def __init__(self,**kwargs):
-        self.score = 0
-
 
 def grabHealthScores():
     print('grabbing url')
@@ -37,7 +26,8 @@ def grabHealthScores():
     healthScoreHolder = []
     noMoreData = False
     storeFile = open(f"testfile{currentDate}.csv","wt")
-    storePath = storeFile.name
+    #so I know where the file is stored, need to update thi to dedicated location for etl purposes
+    storePath = os.path.realpath(storeFile.name)
     print(os.path.realpath(storePath))
     # while True:
     # while pageCount < maxPageCount:
@@ -63,6 +53,27 @@ def grabHealthScores():
     json.dump(healthScoreHolder,storeFile)
     storeFile.close()
     return storePath
-    
+
+
+
+class restaurant():
+    def __init__(self):
+        self.name = restaurantName
+        self.gaHealthScore = healthScore
+        self.yelpScore = 0
+    pass
+
+class yelpInfo():
+    def __init__(self,**kwargs):
+        self.score = 0
+    pass
+
+
+def processGaHealthScores(filepath,**kwargs):
+    pass
+
+def loadGaHealthScores():
+    pass
+
 if __name__ == "__main__":
     grabHealthScores()
