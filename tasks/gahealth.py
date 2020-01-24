@@ -18,6 +18,7 @@ import os
 def grabHealthScores():
     print('grabbing url')
     # ga department of health api that stores all the health reports for food establishments 
+    # need to split the url due to the get url formatting it is not a standard get param capable api
     base_url = "https://ga.healthinspections.us/stateofgeorgia/API/index.cfm/search/%7B%22city%22:%22"
     url_end = "%22,%22keyword%22:%22%22%7D/"
     print(base_url)
@@ -38,7 +39,8 @@ def grabHealthScores():
     for city in cityIds:
 
         while noMoreData == False:
-            try:    
+            try: 
+                #temporarily leaving this for reference to python 2 compatible string interpolation   
                 # healthReq = requests.get("%s%s%s%s" % (base_url,cityIds[city],url_end,pageCount))
                 healthReq = requests.get(f"{base_url}{cityIds[city]}{url_end}{pageCount}")
                 if len(healthReq.json()) > 0:
