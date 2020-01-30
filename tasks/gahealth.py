@@ -29,7 +29,7 @@ def grabHealthScores():
     # maxPageCount = 3
     healthScoreHolder = []
     noMoreData = False
-    storeFile = open(f"testfile{currentDate}.csv","wt")
+    storeFile = open(f"/home/thomas/airflow/data/gahealth/testfile{currentDate}.csv","wt")
     #so I know where the file is stored, need to update thi to dedicated location for etl purposes
     storePath = os.path.realpath(storeFile.name)
     print(os.path.realpath(storePath))
