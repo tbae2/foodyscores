@@ -6,6 +6,10 @@
 ##
 
 
+class yelpInfo():
+    def __init__(self,**kwargs):
+        self.score = 0
+    pass
 
 
 def matchScores():

@@ -71,13 +71,11 @@ class restaurant():
         self.yelpScore = 0
     pass
 
-class yelpInfo():
-    def __init__(self,**kwargs):
-        self.score = 0
-    pass
 
 
 def processGaHealthScores(filepath,**kwargs):
+    print(filepath)
+    gaHealthData = open(filepath,"r")
     pass
 
 def loadGaHealthScores():

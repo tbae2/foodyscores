@@ -7,7 +7,7 @@ import sys
 # you need this so airflow can properly import modules, look for permanent way to do this. 
 sys.path.append('/home/thomas/airflow/dags/foodyscores/')
 # import from asks gahealth
-from tasks.gahealth import grabHealthScores
+from tasks.gahealth import grabHealthScores,processGaHealthScores
 
 default_args = {
     'owner': 'tbae2',
@@ -29,3 +29,13 @@ extractGaHealth = PythonOperator(
     python_callable=grabHealthScores,
     dag=dag
 )
+
+processGaHealth = PythonOperator(
+    task_id = 'processs_extracted_ga_health_scores',
+    python_callable=processGaHealthScores,
+    dag=dag
+)
+
+
+
+extractGaHealth >> processGaHealth
