@@ -20,7 +20,7 @@ def grabHealthScores():
     # ga department of health api that stores all the health reports for food establishments 
     # need to split the url due to the get url formatting it is not a standard get param capable api
     base_url = "https://ga.healthinspections.us/stateofgeorgia/API/index.cfm/search/%7B%22city%22:%22"
-    url_end = "%22,%22keyword%22:%22%22%7D/"
+    url_end = "%22,%22permitType%22:%22Rm9vZCBTZXJ2aWNl%22,%22keyword%22:%22%22%7D/"
     print(base_url)
     pageCount = 0
     currentDate = datetime.date.today()
